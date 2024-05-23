@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Drop Shadow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .image-wrapper canvas {
+            display: block;
+            width: 500px;
+            height: 500px;
+        }
+        .download-link {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #FFF;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Drop Shadow</h1>
+    <div class="controls">
+        <div class="control-group">
+            <label for="backgroundColor">Background Color</label>
+            <input type="color" id="backgroundColor" value="#1656AD">
+        </div>
+        <div class="control-group">
+            <label for="hOffset">Horizontal Offset</label>
+            <input type="number" id="hOffset" value="50">
+        </div>
+        <div class="control-group">
+            <label for="vOffset">Vertical Offset</label>
+            <input type="number" id="vOffset" value="30">
+        </div>
+        <div class="control-group">
+            <label for="blur">Blur</label>
+            <input type="number" id="blur" value="50">
+        </div>
+        <div class="control-group">
+            <label for="border">Border</label>
+            <input type="number" id="border" value="150">
+        </div>
+    </div>
+    <input type="file" id="fileInput" accept=".txt" />
+    <div class="image-container" id="imageContainer"></div>
+    <a id="downloadAllLink" class="download-link" style="display: none;">Download All Images</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
