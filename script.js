@@ -55,6 +55,10 @@ function displayPreviews(urls) {
             previewCanvas.width = previewSize;
             previewCanvas.height = previewSize;
 
+            // Enable high-quality image smoothing
+            previewContext.imageSmoothingEnabled = true;
+            previewContext.imageSmoothingQuality = 'high';
+
             // Fill background color for preview
             previewContext.fillStyle = backgroundColor;
             previewContext.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
@@ -119,6 +123,10 @@ function generateFinalImages(urls) {
             downloadCanvas.width = finalSize;
             downloadCanvas.height = finalSize;
 
+            // Enable high-quality image smoothing
+            downloadContext.imageSmoothingEnabled = true;
+            downloadContext.imageSmoothingQuality = 'high';
+
             // Fill background color for download
             downloadContext.fillStyle = backgroundColor;
             downloadContext.fillRect(0, 0, downloadCanvas.width, downloadCanvas.height);
@@ -134,14 +142,15 @@ function generateFinalImages(urls) {
 
             // Convert download canvas to blob and add to zip
             downloadCanvas.toBlob(blob => {
-                imagesFolder.file(url.split('/').pop(), blob);
+                const fileName = url.split('/').pop().replace(/\.[^/.]+$/, "") + ".png"; // Ensure PNG extension
+                imagesFolder.file(fileName, blob, { type: 'image/png' }); // Ensure lossless PNG format
                 processedImages++;
                 if (processedImages === totalImages) {
                     zip.generateAsync({ type: "blob" }).then(content => {
                         saveAs(content, "images.zip");
                     });
                 }
-            });
+            }, 'image/png'); // Ensure lossless PNG format
         };
 
         img.onerror = () => {
