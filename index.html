@@ -26,6 +26,15 @@
             flex-direction: column;
             align-items: center;
         }
+        .file-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .slider-label {
+            margin-bottom: 5px;
+        }
         .image-container {
             display: flex;
             flex-wrap: wrap;
@@ -42,8 +51,6 @@
             height: 500px;
         }
         .download-link {
-            display: block;
-            margin-top: 20px;
             padding: 10px 20px;
             background-color: #007BFF;
             color: #FFF;
@@ -53,6 +60,11 @@
         }
         .download-link:hover {
             background-color: #0056b3;
+        }
+        #roundnessGroup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
@@ -64,25 +76,37 @@
             <input type="color" id="backgroundColor" value="#1656AD">
         </div>
         <div class="control-group">
-            <label for="hOffset">Horizontal Offset</label>
-            <input type="number" id="hOffset" value="50">
+            <label class="slider-label" for="hOffset">Horizontal Offset: <span id="hOffsetValue">50</span></label>
+            <input type="range" id="hOffset" min="0" max="100" value="50">
         </div>
         <div class="control-group">
-            <label for="vOffset">Vertical Offset</label>
-            <input type="number" id="vOffset" value="30">
+            <label class="slider-label" for="vOffset">Vertical Offset: <span id="vOffsetValue">30</span></label>
+            <input type="range" id="vOffset" min="0" max="100" value="30">
         </div>
         <div class="control-group">
-            <label for="blur">Blur</label>
-            <input type="number" id="blur" value="50">
+            <label class="slider-label" for="blur">Blur: <span id="blurValue">50</span></label>
+            <input type="range" id="blur" min="0" max="100" value="50">
         </div>
         <div class="control-group">
-            <label for="border">Border</label>
-            <input type="number" id="border" value="150">
+            <label class="slider-label" for="border">Border: <span id="borderValue">150</span></label>
+            <input type="range" id="border" min="0" max="200" value="150">
+        </div>
+        <div class="control-group">
+            <label for="roundCorners">Round Corners</label>
+            <input type="checkbox" id="roundCorners">
         </div>
     </div>
-    <input type="file" id="fileInput" accept=".txt" />
+    <div id="roundnessGroup" style="display: none;">
+        <div class="control-group">
+            <label class="slider-label" for="roundness">Roundness: <span id="roundnessValue">20</span></label>
+            <input type="range" id="roundness" min="0" max="100" value="20">
+        </div>
+    </div>
+    <div class="file-upload">
+        <input type="file" id="fileInput" accept=".txt" />
+        <a id="downloadAllLink" class="download-link" style="display: none;">Download All Images</a>
+    </div>
     <div class="image-container" id="imageContainer"></div>
-    <a id="downloadAllLink" class="download-link" style="display: none;">Download All Images</a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="script.js"></script>
